@@ -1,3 +1,25 @@
 <resources>
     <string name="app_name">Sinisa</string>
+    <string name="username">Username</string>
+    <string name="password">Passwod</string>
+    <string name="daftar">Daftar</string>
+    <string name="nik">Nik</string>
+    <string name="nama">Nama</string>
+    <string name="alamat">Alamat</string>
+    <string name="belum_punya_akun">Belum Memiliki Akun</string>
+    <string name="masuk">Masuk</string>
+    <string name="sudah_punya_akun">Sudah Punya Akun</string>
+    <string name="penyuluhan">Penyuluhan</string>
+    <string name="sewa_alat">Sewa Alat</string>
+    <string name="empty_data">DATA KOSONG!</string>
+    <string name="empty_data_desc">Data yang anda perlukan tidak tersedia untuk saat ini</string>
+    <string name="pengajuan_jadwal">Pengajuan Jadwal</string>
+    <string name="nama_instansi">Nama Instansi</string>
+    <string name="tanggal_input">Tanggal Input</string>
+    <string name="tanggal_output">Tanggal Output</string>
+    <string name="simpan">Simpan</string>
+    <string name="asal">Asal</string>
+    <string name="harga_sewa">Harga Sewa</string>
+    <string name="jumlah_hari">Jumlah Hari</string>
+    <string name="no_telepon">No Telepon</string>
 </resources>
