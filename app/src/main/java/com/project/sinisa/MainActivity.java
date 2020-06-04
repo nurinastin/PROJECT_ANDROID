@@ -2,7 +2,10 @@ package com.project.sinisa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+
+import com.project.sinisa.akun.Sign_In;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -10,5 +13,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final Intent i = new Intent(this, Sign_In.class);
+        Thread timer = new Thread() {
+            public void run() {
+                try {
+                    sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } finally {
+                    startActivity(i);
+                    finish();
+                }
+            }
+        };
+        timer.start();
     }
 }

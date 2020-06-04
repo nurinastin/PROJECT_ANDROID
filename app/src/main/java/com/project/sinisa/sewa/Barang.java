@@ -19,10 +19,9 @@ import com.project.sinisa.R;
 import com.project.sinisa.config.AppController;
 import com.project.sinisa.config.AuthData;
 import com.project.sinisa.config.ServerAccess;
-import com.project.sinisa.penyuluhan.Penyuluhan;
-import com.project.sinisa.penyuluhan.adapter.Adapter_Penyuluhan;
-import com.project.sinisa.penyuluhan.model.Penyuluhan_Model;
+import com.project.sinisa.sewa.adapter.Adapter_Barang;
 import com.project.sinisa.sewa.adapter.Adapter_Sewa;
+import com.project.sinisa.sewa.model.Barang_Model;
 import com.project.sinisa.sewa.model.Sewa_Model;
 
 import org.json.JSONArray;
@@ -32,15 +31,15 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sewa extends AppCompatActivity {
-    private Adapter_Sewa adapter;
-    private List<Sewa_Model> list;
+public class Barang extends AppCompatActivity {
+    private Adapter_Barang adapter;
+    private List<Barang_Model> list;
     private RecyclerView listdata;
     RecyclerView.LayoutManager mManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sewa);
+        setContentView(R.layout.activity_barang);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back);
@@ -53,7 +52,7 @@ public class Sewa extends AppCompatActivity {
         listdata = (RecyclerView) findViewById(R.id.listdata);
         listdata.setHasFixedSize(true);
         list = new ArrayList<>();
-        adapter = new Adapter_Sewa(this,(ArrayList<Sewa_Model>) list, this);
+        adapter = new Adapter_Barang(this,(ArrayList<Barang_Model>) list, this);
         mManager = new LinearLayoutManager(getBaseContext(),LinearLayoutManager.VERTICAL,false);
         listdata.setLayoutManager(mManager);
         listdata.setAdapter(adapter);
@@ -62,7 +61,7 @@ public class Sewa extends AppCompatActivity {
     private void loadJson()
     {
         Intent data = getIntent();
-        StringRequest senddata = new StringRequest(Request.Method.GET, ServerAccess.SEWA+"?type=list&nik="+ AuthData.getInstance(getBaseContext()).getNik(), new Response.Listener<String>() {
+        StringRequest senddata = new StringRequest(Request.Method.GET, ServerAccess.BARANG+"?type=list&nik="+ AuthData.getInstance(getBaseContext()).getNik(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject res = null;
@@ -73,17 +72,11 @@ public class Sewa extends AppCompatActivity {
                         for (int i = 0; i < arr.length(); i++) {
                             try {
                                 JSONObject data = arr.getJSONObject(i);
-                                Sewa_Model md = new Sewa_Model();
-                                md.setKode(data.getString("nik"));
-                                md.setNama(data.getString("nama"));
-                                md.setNo_telepon(data.getString("no_telepon"));
-                                md.setNama_barang(data.getString("nama_barang"));
-                                md.setTanggal_sewa(data.getString("tanggal_sewa"));
-                                md.setTanggal_kembali(data.getString("tanggal_kembali"));
-                                md.setJumlah_hari(data.getString("jumlah_hari"));
-                                md.setHarga_sewa(data.getString("harga_sewa"));
-                                md.setAsal(data.getString("asal"));
-                                md.setAlamat(data.getString("alamat"));
+                                Barang_Model md = new Barang_Model();
+                                md.setKode(data.getString("id_barang"));
+                                md.setNama(data.getString("nama_barang"));
+                                md.setHarga(data.getString("harga")+" / hari");
+                                md.setFoto(ServerAccess.BASE_URL+"sewaalat/images/"+ data.getString("gambar"));
                                 list.add(md);
                             } catch (Exception ea) {
                                 ea.printStackTrace();
@@ -91,10 +84,10 @@ public class Sewa extends AppCompatActivity {
                         }
                         adapter.notifyDataSetChanged();
                     }else{
-                        Toast.makeText(Sewa.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Barang.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(Sewa.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Barang.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                     Log.d("pesan", "error "+e.getMessage());
                     e.printStackTrace();
                 }
@@ -103,7 +96,7 @@ public class Sewa extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(Sewa.this, "Data Kosong", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Barang.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                         Log.d("volley", "errornya : " + error.getMessage());
                     }
                 });

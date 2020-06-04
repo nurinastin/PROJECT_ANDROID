@@ -65,6 +65,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/no_telepon"
+                    android:inputType="phone"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/colorPrimary"
                     android:hint="@string/no_telepon"/>
@@ -76,6 +77,31 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/tanggal_sewa"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:hint="@string/tanggal_sewa"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tanggal_kembali"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/colorPrimary"
+                    android:hint="@string/tanggal_kembali"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/AppTheme">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
                     android:id="@+id/jumlah_hari"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/colorPrimary"
@@ -89,6 +115,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/harga_sewa"
+                    android:inputType="number"
                     android:layout_marginBottom="8dp"
                     android:textColor="@color/colorPrimary"
                     android:hint="@string/harga_sewa"/>

@@ -64,6 +64,7 @@
                 android:gravity="right"
                 android:textStyle="bold"
                 android:id="@+id/daftar"
+                android:paddingLeft="8dp"
                 android:textColor="@color/colorPrimary"
                 android:text="@string/daftar"/>
         </LinearLayout>

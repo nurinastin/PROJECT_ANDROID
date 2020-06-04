@@ -22,4 +22,9 @@
     <string name="harga_sewa">Harga Sewa</string>
     <string name="jumlah_hari">Jumlah Hari</string>
     <string name="no_telepon">No Telepon</string>
+    <string name="barang">Barang</string>
+    <string name="tanggal_sewa">Tanggal Sewa</string>
+    <string name="tanggal_kembali">Tanggal Kembali</string>
+    <string name="status">Status</string>
+    <string name="materi">Materi</string>
 </resources>
