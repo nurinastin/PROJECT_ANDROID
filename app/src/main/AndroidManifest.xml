@@ -13,13 +13,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".sewa.Barang"></activity>
+        <activity android:name=".dashboard.Fragment_Dashboard"></activity>
+        <activity
+            android:name=".dashboard.Dashboard"
+            android:label="@string/title_activity_dashboard"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".dashboard.Tentang" />
+        <activity android:name=".sewa.Barang" />
         <activity android:name=".sewa.Form_Sewa" />
         <activity android:name=".sewa.Detail_Barang" />
         <activity android:name=".sewa.Sewa" />
         <activity android:name=".penyuluhan.Pengajuan_Jadwal" />
         <activity android:name=".penyuluhan.Penyuluhan" />
-        <activity android:name=".dashboard.Dashboard" />
         <activity android:name=".akun.Sign_Up" />
         <activity android:name=".akun.Sign_In" />
         <activity android:name=".MainActivity">

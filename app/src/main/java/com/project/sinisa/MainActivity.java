@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.project.sinisa.akun.Sign_In;
+import com.project.sinisa.dashboard.Dashboard;
 
 public class MainActivity extends AppCompatActivity {
 
