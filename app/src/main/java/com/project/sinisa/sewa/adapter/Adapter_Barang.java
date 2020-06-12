@@ -23,10 +23,12 @@ import com.project.sinisa.sewa.model.Sewa_Model;
 import java.util.ArrayList;
 
 public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHolder> {
+//    mengambil list dari model barang
     private ArrayList<Barang_Model> listdata;
+//    menentukan activity
     private Activity activity;
     private Context context;
-
+//    constructor dari adapterbarang
     public Adapter_Barang(Activity activity, ArrayList<Barang_Model> listdata, Context context) {
         this.listdata = listdata;
         this.activity = activity;
@@ -35,6 +37,7 @@ public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHold
 
     @Override
     public Adapter_Barang.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//        menentukan view untuk listdata disini kita menggunakan layout dengan nama template barang
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.template_barang, parent, false);
         Adapter_Barang.ViewHolder vh = new Adapter_Barang.ViewHolder(v);
@@ -43,13 +46,16 @@ public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHold
     @Override
     public void onBindViewHolder(Adapter_Barang.ViewHolder holder, int position) {
         final Adapter_Barang.ViewHolder x = holder;
+//        mengambil data dari model yang sudah di set tadi di activity dengan menentukan posisinya
         holder.kode.setText(listdata.get(position).getKode());
         holder.nama.setText(listdata.get(position).getNama());
         holder.harga.setText(listdata.get(position).getHarga());
+//        fungsi glide dibawah adalah memuat gambar yang sudah tersedia menggunakan link
                 Glide.with(activity)
                 .load(listdata.get(position).getFoto())
                 .into(holder.cover);
         holder.mContext = context;
+//        fungsi dibawah ini untuk menyembunyikan kode
         holder.kode.setVisibility(View.GONE);
     }
 
@@ -60,12 +66,14 @@ public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private CardView cv;
+//        deklarasi text di view
         private TextView kode, harga, nama;
         ImageView cover;
         Context mContext;
 
         public ViewHolder(View v) {
             super(v);
+//            inisialisasi view
             kode = (TextView) v.findViewById(R.id.kode);
             nama = (TextView) v.findViewById(R.id.nama);
             harga = (TextView) v.findViewById(R.id.harga);
@@ -75,6 +83,7 @@ public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHold
                 public void onClick(View v) {
                     try {
                         Intent intent;
+//                      mengarahkan halaman ketika di klik di data barang
                         intent = new Intent(v.getContext(), Form_Sewa.class);
                         intent.putExtra("kode", kode.getText().toString());
                         intent.putExtra("nama", nama.getText().toString());
