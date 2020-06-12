@@ -3,6 +3,7 @@ package com.project.sinisa.config;
 import java.text.DecimalFormat;
 
 public class ServerAccess {
+//    deklarasi untuk link link api yang dibutuhkan di aplikasi
     public static final String BASE_URL = "http://192.168.1.2/sinisa/";
     public static final String ROOT_API = BASE_URL+"api/";
     public static final String LOGIN = ROOT_API+"login.php";

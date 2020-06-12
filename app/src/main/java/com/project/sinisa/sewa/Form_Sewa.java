@@ -33,6 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class Form_Sewa extends AppCompatActivity {
+//    deklarasi variabel
     EditText nik, nama, no_telepon, tanggal_sewa, tanggal_kembali, jumlah_hari, harga_sewa, asal, alamat;
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
@@ -50,6 +51,7 @@ public class Form_Sewa extends AppCompatActivity {
                 finish();
             }
         });
+//membuat format date
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
         nik = findViewById(R.id.nik);
 //        nik.setText(AuthData.getInstance(getBaseContext()).getNik());
@@ -57,12 +59,14 @@ public class Form_Sewa extends AppCompatActivity {
 //        nama.setText(AuthData.getInstance(getBaseContext()).getNama_depan());
         no_telepon= findViewById(R.id.no_telepon);
         tanggal_sewa = findViewById(R.id.tanggal_sewa);
+//        menambahkan event klik di tanggal sewa
         tanggal_sewa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 tanggal_sewa();
             }
         });
+        //        menambahkan event fokus di tanggal sewa
         tanggal_sewa.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -153,6 +157,7 @@ public class Form_Sewa extends AppCompatActivity {
         /**
          * Initiate DatePicker dialog
          */
+//        membuat datepicker dialog untuk memilih tanggal
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -165,12 +170,15 @@ public class Form_Sewa extends AppCompatActivity {
                 /**
                  * Set Calendar untuk menampung tanggal yang dipilih
                  */
+//                mengambil data calendar dari smartphone user
                 Calendar newDate = Calendar.getInstance();
+//                melakukan set data sesua dengan tanggal yag dipilih
                 newDate.set(year, monthOfYear, dayOfMonth);
 
                 /**
                  * Update TextView dengan tanggal yang kita pilih
                  */
+//                menampilkan data di text tanggal_kembali
                 tanggal_kembali.setText(dateFormatter.format(newDate.getTime()));
             }
 
@@ -179,6 +187,7 @@ public class Form_Sewa extends AppCompatActivity {
         /**
          * Tampilkan DatePicker dialog
          */
+//        menampilkan dialog yang sudah di setting sebelumnya
         datePickerDialog.show();
     }
     private void tanggal_sewa() {

@@ -32,17 +32,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Barang extends AppCompatActivity {
+//    fungsi adapter adalah jembatan antara dan AdapterView (contohnya ListView) dengan data
     private Adapter_Barang adapter;
+//    fungsi model adalah untuk menentukan data yang mau diambil dan di setting di model
     private List<Barang_Model> list;
+//    recycler view adalah sebuah wadah untuk menampilkna data
     private RecyclerView listdata;
     RecyclerView.LayoutManager mManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_barang);
+//        deklarasi toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        menambahkan icon kembali
         toolbar.setNavigationIcon(R.drawable.back);
+        //menambahkan event klik di toolbat
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,6 +57,7 @@ public class Barang extends AppCompatActivity {
         });
         listdata = (RecyclerView) findViewById(R.id.listdata);
         listdata.setHasFixedSize(true);
+//        inisialisasi arraylist
         list = new ArrayList<>();
         adapter = new Adapter_Barang(this,(ArrayList<Barang_Model>) list, this);
         mManager = new LinearLayoutManager(getBaseContext(),LinearLayoutManager.VERTICAL,false);
@@ -61,22 +68,29 @@ public class Barang extends AppCompatActivity {
     private void loadJson()
     {
         Intent data = getIntent();
+//        melakukan request dari android ke server untuk mengambil data menggunakan method get
         StringRequest senddata = new StringRequest(Request.Method.GET, ServerAccess.BARANG+"?type=list&nik="+ AuthData.getInstance(getBaseContext()).getNik(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 JSONObject res = null;
                 try {
+//                     fungsi ini berfungsi untuk mengubah string menjadi jsonObject
                     res = new JSONObject(response);
+//                    mengambil raay dengan nama data dan ditampung di arr
                     JSONArray arr = res.getJSONArray("data");
                     if(arr.length() > 0) {
+//                        melakukan looping data di array data sesuai dengan jumlah data
                         for (int i = 0; i < arr.length(); i++) {
                             try {
                                 JSONObject data = arr.getJSONObject(i);
+//                              membuat object barangmodel untuk set dan get nantinya
                                 Barang_Model md = new Barang_Model();
+//                                memasukkan data dari api ke model
                                 md.setKode(data.getString("id_barang"));
                                 md.setNama(data.getString("nama_barang"));
                                 md.setHarga(data.getString("harga")+" / hari");
                                 md.setFoto(ServerAccess.BASE_URL+"sewaalat/images/"+ data.getString("gambar"));
+//                                data dari model nanti akan dimasukkan ke list model
                                 list.add(md);
                             } catch (Exception ea) {
                                 ea.printStackTrace();
@@ -87,6 +101,7 @@ public class Barang extends AppCompatActivity {
                         Toast.makeText(Barang.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
+//
                     Toast.makeText(Barang.this, "Data Kosong", Toast.LENGTH_SHORT).show();
                     Log.d("pesan", "error "+e.getMessage());
                     e.printStackTrace();

@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        membuat intent ketika waktu sudah habis maka akan diarahkan ke halaman login
         final Intent i = new Intent(this, Sign_In.class);
         Thread timer = new Thread() {
             public void run() {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+//        memulai timer splash screen
         timer.start();
     }
 }

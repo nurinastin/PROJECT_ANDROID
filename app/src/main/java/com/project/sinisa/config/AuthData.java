@@ -20,6 +20,7 @@ public class AuthData {
         }
         return mInstance;
     }
+    //fungsi auth data ini bertujuan untuk menyimpan data auth login. fungsi ini sama seperti fungsi session di web
     public boolean setdatauser(String xid_user, String xnama_depan, String xnik){
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
