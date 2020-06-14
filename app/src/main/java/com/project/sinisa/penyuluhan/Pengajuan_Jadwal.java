@@ -54,7 +54,7 @@ public class Pengajuan_Jadwal extends AppCompatActivity {
         nama = findViewById(R.id.nama);
         nama_instansi = findViewById(R.id.nama_instansi);
         simpan = findViewById(R.id.simpan);
-        status = findViewById(R.id.status);
+//        status = findViewById(R.id.status);
         tanggal_input = findViewById(R.id.tanggal_input);
         tanggal_output = findViewById(R.id.tanggal_output);
         materi = findViewById(R.id.materi);
@@ -122,7 +122,7 @@ public class Pengajuan_Jadwal extends AppCompatActivity {
                     Map<String, String> params = new HashMap<>();
                     params.put("nama", nama.getText().toString());
                     params.put("nama_instansi", nama_instansi.getText().toString());
-                    params.put("status", status.getText().toString());
+//                    params.put("status", status.getText().toString());
                     params.put("tanggal_input", tanggal_input.getText().toString());
                     params.put("tanggal_output", tanggal_output.getText().toString());
                     params.put("materi", materi.getText().toString());
@@ -134,7 +134,6 @@ public class Pengajuan_Jadwal extends AppCompatActivity {
             AppController.getInstance().addToRequestQueue(senddata);
     }
     private void tanggal_input() {
-
         /**
          * Calendar untuk mendapatkan tanggal sekarang
          */

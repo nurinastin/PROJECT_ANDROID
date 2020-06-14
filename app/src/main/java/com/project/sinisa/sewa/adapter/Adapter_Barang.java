@@ -87,6 +87,7 @@ public class Adapter_Barang extends RecyclerView.Adapter<Adapter_Barang.ViewHold
                         intent = new Intent(v.getContext(), Form_Sewa.class);
                         intent.putExtra("kode", kode.getText().toString());
                         intent.putExtra("nama", nama.getText().toString());
+                        intent.putExtra("harga", harga.getText().toString());
                         v.getContext().startActivity(intent);
                     } catch (Exception e) {
                         Log.d("pesan", "error");

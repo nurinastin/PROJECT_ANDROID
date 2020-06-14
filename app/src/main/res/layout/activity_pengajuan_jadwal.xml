@@ -59,19 +59,19 @@
                     android:textColor="@color/colorPrimary"
                     android:hint="@string/nama_instansi"/>
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:theme="@style/AppTheme">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/status"
-                    android:layout_marginBottom="8dp"
-                    android:textColor="@color/colorPrimary"
-                    android:hint="@string/status"/>
-            </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="8dp"-->
+<!--                android:theme="@style/AppTheme">-->
+<!--                <EditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/status"-->
+<!--                    android:layout_marginBottom="8dp"-->
+<!--                    android:textColor="@color/colorPrimary"-->
+<!--                    android:hint="@string/status"/>-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

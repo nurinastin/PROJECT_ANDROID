@@ -26,8 +26,10 @@ import com.project.sinisa.config.ServerAccess;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -38,6 +40,7 @@ public class Form_Sewa extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private SimpleDateFormat dateFormatter;
     Button simpan;
+    int hg = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,6 +91,9 @@ public class Form_Sewa extends AppCompatActivity {
         });
         jumlah_hari= findViewById(R.id.jumlah_hari);
         harga_sewa = findViewById(R.id.harga_sewa);
+        Intent data = getIntent();
+        hg = Integer.parseInt(data.getStringExtra("harga").replace(" / hari", ""));
+        harga_sewa.setText(Integer.toString(hg));
         asal = findViewById(R.id.asal);
         alamat= findViewById(R.id.alamat);
         simpan = findViewById(R.id.simpan);;
@@ -180,6 +186,24 @@ public class Form_Sewa extends AppCompatActivity {
                  */
 //                menampilkan data di text tanggal_kembali
                 tanggal_kembali.setText(dateFormatter.format(newDate.getTime()));
+                SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+                String dateBeforeString = parseDateToddMMyyyy(tanggal_sewa.getText().toString()).replace("-", " ");
+                String dateAfterString = parseDateToddMMyyyy(tanggal_kembali.getText().toString()).replace("-", " ");
+                try {
+                    Date dateBefore = myFormat.parse(dateBeforeString);
+                    Date dateAfter = myFormat.parse(dateAfterString);
+                    long difference = dateAfter.getTime() - dateBefore.getTime();
+                    float daysBetween = (difference / (1000*60*60*24));
+                    int jumlah  = Math.round(daysBetween);
+                    /* You can also convert the milliseconds to days using this method
+                     * float daysBetween =
+                     *         TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS)
+                     */
+                    CountPrice(jumlah);
+                    System.out.println("Number of Days between dates: "+jumlah);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -189,6 +213,30 @@ public class Form_Sewa extends AppCompatActivity {
          */
 //        menampilkan dialog yang sudah di setting sebelumnya
         datePickerDialog.show();
+    }
+    private void CountPrice(int jumlah){
+        int total = hg * jumlah;
+        jumlah_hari.setText(Integer.toString(jumlah));
+        if(jumlah != 0){
+            harga_sewa.setText(Integer.toString(total));
+        }
+    }
+    public String parseDateToddMMyyyy(String time) {
+        String inputPattern = "yyyy-MM-dd";
+        String outputPattern = "dd-MM-yyyy";
+        SimpleDateFormat inputFormat = new SimpleDateFormat(inputPattern);
+        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
+
+        Date date = null;
+        String str = null;
+
+        try {
+            date = inputFormat.parse(time);
+            str = outputFormat.format(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return str;
     }
     private void tanggal_sewa() {
 
@@ -219,6 +267,26 @@ public class Form_Sewa extends AppCompatActivity {
                  * Update TextView dengan tanggal yang kita pilih
                  */
                 tanggal_sewa.setText(dateFormatter.format(newDate.getTime()));
+                SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
+                if(!tanggal_kembali.getText().toString().isEmpty()){
+                    String dateBeforeString = parseDateToddMMyyyy(tanggal_sewa.getText().toString()).replace("-", " ");
+                    String dateAfterString = parseDateToddMMyyyy(tanggal_kembali.getText().toString()).replace("-", " ");
+                    try {
+                        Date dateBefore = myFormat.parse(dateBeforeString);
+                        Date dateAfter = myFormat.parse(dateAfterString);
+                        long difference = dateAfter.getTime() - dateBefore.getTime();
+                        float daysBetween = (difference / (1000*60*60*24));
+                        int jumlah  = Math.round(daysBetween);
+                        /* You can also convert the milliseconds to days using this method
+                         * float daysBetween =
+                         *         TimeUnit.DAYS.convert(difference, TimeUnit.MILLISECONDS)
+                         */
+                        CountPrice(jumlah);
+                        System.out.println("Number of Days between dates: "+jumlah);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
         }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
