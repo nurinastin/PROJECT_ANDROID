@@ -83,6 +83,7 @@ public class Penyuluhan extends AppCompatActivity {
                                 Penyuluhan_Model md = new Penyuluhan_Model();
                                 md.setKode(data.getString("id"));
                                 md.setNama(data.getString("nama"));
+                                md.setNama_instansi(data.getString("nama_instansi"));
                                 md.setStatus(data.getString("status"));
                                 md.setTanggal_input(data.getString("tanggal_input"));
                                 md.setTanggal_output(data.getString("tanggal_output"));
