@@ -119,12 +119,12 @@ public class Dashboard extends AppCompatActivity implements NavigationView.OnNav
                 closeDrawer();
                 break;
             case R.id.hubungi:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new Tentang())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new Hubungi())
                         .commit();
                 closeDrawer();
                 break;
             case R.id.tentang:
-                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new Hubungi())
+                getSupportFragmentManager().beginTransaction().replace(R.id.framelayout_id, new Tentang())
                         .commit();
                 closeDrawer();
                 break;

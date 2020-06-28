@@ -143,4 +143,8 @@ public class Sign_In extends AppCompatActivity {
             AppController.getInstance().addToRequestQueue(senddata);
         }
     }
+    @Override
+    public void onBackPressed() {
+//        startActivity(new Intent(getBaseContext(), Welcome.class));
+    }
 }

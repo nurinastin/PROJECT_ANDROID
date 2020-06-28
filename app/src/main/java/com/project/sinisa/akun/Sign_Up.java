@@ -92,11 +92,16 @@ public class Sign_Up extends AppCompatActivity {
                 public void onResponse(String response) {
                     pd.cancel();
                     try {
-                        Log.d("pesan", response);
                         JSONObject res = new JSONObject(response);
-                        Toast.makeText(Sign_Up.this, res.getString("message"), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getBaseContext(), Sign_In.class);
-                        startActivity(intent);
+                        if (res.getBoolean("status")) {
+                            Toast.makeText(Sign_Up.this, res.getString("message"), Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getBaseContext(), Sign_In.class);
+                            startActivity(intent);
+                        }else{
+                            Toast.makeText(Sign_Up.this, res.getString("message"), Toast.LENGTH_SHORT).show();
+//                            Intent intent = new Intent(getBaseContext(), Sign_Up.class);
+//                            startActivity(intent);
+                        }
                         pd.dismiss();
 
                     } catch (JSONException e) {
